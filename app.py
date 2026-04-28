@@ -54,8 +54,8 @@ STATUS_COLS = [
 # ---------------- styles ----------------
 
 CSS = """
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap');
 :root {
     --bg-0: #0a0e1a;
     --bg-1: #131829;
@@ -460,7 +460,10 @@ def tone_for(value, low, high, reverse=False):
 
 # ---------------- app ----------------
 
-st.markdown(CSS, unsafe_allow_html=True)
+if hasattr(st, "html"):
+    st.html(CSS)
+else:
+    st.markdown(CSS, unsafe_allow_html=True)
 
 with st.sidebar:
     st.header("◆ Upload Daily Report")
